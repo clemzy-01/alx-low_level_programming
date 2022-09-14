@@ -2,7 +2,7 @@
 #include "6-abs.c"
 #include <stdio.h>
 
-/*
+/**
  * print_to_98 - At will
  *@n: integer to put in this table
  *
