@@ -3,14 +3,14 @@
 #include <stdio.h>
 
 /*
- * print_to_98 - the function
- *
- * Return: Number required
+ * print_to_98 - At will
+ *@n: integer to put in this table
  *
  */
 void print_to_98(int n)
 {
 	int i;
+
 	if (n > 98)
 	{
 		for (i = n; i >= 98; i--)
