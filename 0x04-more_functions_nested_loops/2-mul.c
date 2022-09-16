@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  *
  * mul - multiplier
@@ -11,5 +10,5 @@
  */
 int mul(int a, int b)
 {
-	return (a * b);
+	return(a * b);
 }
