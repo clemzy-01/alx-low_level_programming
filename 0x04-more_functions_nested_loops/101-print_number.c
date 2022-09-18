@@ -33,6 +33,10 @@ void print_number(int n)
 		x = x / 10;
 		c++;
 	}
+	for (i = 1; i < c; i++)
+	{
+		d *= 10;
+	}
 	for (i = 0; i < c; i++)
 	{
 		_putchar(y / d + '0');
