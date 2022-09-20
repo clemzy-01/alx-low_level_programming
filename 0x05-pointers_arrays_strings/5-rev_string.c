@@ -2,7 +2,8 @@
 #include "2-strlen.c"
 
 /**
- * rev-string - reverse a string value
+ * rev_string - reverse a string value
+ *
  * @s: string to print
  */
 void rev_string(char *s)
