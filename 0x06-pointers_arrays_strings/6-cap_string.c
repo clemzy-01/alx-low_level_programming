@@ -1,7 +1,5 @@
 #include "main.h"
-
 /**
- *
  * _indexOf - returns boolean if special  character
  * @a: character to return
  * Return: true or false
@@ -21,14 +19,12 @@ int _indexOf(char a)
 }
 
 /**
- *
  * cap_string - capitalizes the string
  * @s: string
  *
  * Return: the string capitalized
  *
  */
-
 char *cap_string(char *s)
 {
 	int i;

@@ -1,7 +1,5 @@
 #include "main.h"
-
 /**
- *
  * _strncat - concats two arrays
  * @dest: destination of concat
  * @src: source array to concat
@@ -21,6 +19,5 @@ char *_strncat(char *dest, char *src, int n)
 		dest[j + i] = src[i];
 	}
 	dest[j + i] = '\0';
-
 	return (dest);
 }
