@@ -1,10 +1,8 @@
+#include "main.h"
 /**
  * File: 100-wildcmp.c
  * Auth: Clem Mordi
  */
-
-#include "main.h"
-
 
 int strlen_no_wilds(char *str);
 
