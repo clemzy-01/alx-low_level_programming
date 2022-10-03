@@ -8,7 +8,6 @@
  * @s: string to check
  * Return: boolean
  */
-
 int StringCheck(char *s)
 {
 	int i = 0;
@@ -22,7 +21,6 @@ int StringCheck(char *s)
 	}
 	return (1);
 }
-
 /**
  * main - main function
  * @argc: arguments
