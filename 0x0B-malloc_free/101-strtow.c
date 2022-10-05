@@ -1,108 +1,104 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
-
-int word_len(char *str);
-
-int count_words(char *str);
-
-char **strtow(char *str);
-
 /**
- * word_len - Locates the index marking the end of the
- * first word contained within a string.
- * @str: The string to be searched.
- *
- * Return: The index marking the end of the initial word pointed to by str.
+ * helper - helps function
+ * @word: wordcount
+ * @len: length
+ * @str: string to go through
+ * @s: array you are assigning
+ * Return: char value
  */
-
-int word_len(char *str)
+char **helper(int word, int len, char *str, char **s)
 {
-	int index = 0, len = 0;
+	int i, k, j;
+	j = 0;
 
-	while (*(str + index) && *(str + index) != ' ')
+	for (i = 0; i < word; i++)
 	{
-		len++;
-		index++;
-	}
-	return (len);
-}
+		k = 0;
 
-/**
- * count_words - Counts the number of words contained within a string.
- * @str: The string to be searched.
- * Return: The number of words contained within str.
- */
-int count_words(char *str)
-{
-	int index = 0, words = 0, len = 0;
-
-	for (index = 0; *(str + index); index++)
-	{
-		len++;
-	}
-	for (index = 0; index < len; index++)
-	{
-		if (*(str + index) != ' ')
+		for (; j < len; j++)
 		{
-			words++;
-			index += word_len(str + index);
+			if (str[0] != ' ' || str[j] != ' ')
+			{
+				s[i][k] = str[j];
+				k++;
+			}
+			if (j != 0 && str[j] == ' ' && str[j - 1] != ' ')
+			{
+				j++;
+				break;
+			}
 		}
+		s[i][k + 1] = '\0';
 	}
-	return (words);
+	s[word + 1] = NULL;
+	return (s);
 }
-
 /**
- * strtow - Splits a string into words.
- * @str: The string to be split.
- *
- * Return: If str = NULL, str = "", or the function fails - NULL.
- * Otherwise - a pointer to an array of strings (words).
+ * strtow - string to words
+ * @str: string to check
+ * Return: return char value
  */
 char **strtow(char *str)
 {
-	char **strings;
-	int index = 0, words, w, letters, l;
+	int len, i, j, size, k, word;
+	char **s;
 
-	if (str == NULL || str[0] == '\0')
+	if (str == NULL)
 	{
 		return (NULL);
 	}
-	words = count_words(str);
+	len = 0;
+	word = 0;
 
-	if (words == 0)
+	while (str[len] != '\0')
 	{
-		return (NULL);
-	}
-	strings = malloc(sizeof(char *) * (words + 1));
-
-	if (strings == NULL)
-	{
-		return (NULL);
-	}
-	for (w = 0; w < words; w++)
-	{
-		while (str[index] == ' ')
+		if (str[0] != ' ')
 		{
-			index++;
+			word++;
 		}
-		letters = word_len(str + index);
-		strings[w] = malloc(sizeof(char) * (letters + 1));
-
-		if (strings[w] == NULL)
+		if (str[len] != ' ' && str[len - 1] == ' ' && len != 0)
 		{
-			for (; w >= 0; w--)
+			word++;
+		}
+		len++;
+	}
+	s = (char **)malloc(sizeof(char *) * word + 1);
+
+	if (s == NULL)
+	{
+		return (NULL);
+	}
+	j = 0;
+
+	for (i = 0; i < word; i++)
+	{
+		size = 0;
+		for (; j < len; j++)
+		{
+			if (str[0] != ' ' || str[j] != ' ')
 			{
-				free(strings[w]);
+				size++;
 			}
-			free(strings);
-			return (NULL);
+			if (str[j] == ' ' && size > 0)
+			{
+				break;
+			}
 		}
-		for (l = 0; l < letters; l++)
+		printf("%d\n", size);
+		s[i] = (char *)malloc(sizeof(char) * size + 1);
+
+		if (s[i] == NULL)
 		{
-			strings[w][l] = str[index++];
+			for (k = i - 1; k >= 0; k--)
+			{
+				free(s[k]);
+			}
+			free(s);
 		}
-		strings[w][l] = '\0';
 	}
-	strings[w] = NULL;
-	return (strings);
+	s = helper(word, len, str, s);
+	return (s);
 }
