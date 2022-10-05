@@ -1,17 +1,26 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
- * free_grid - Frees a 2-dimensional array of integers.
- * @grid: The 2-dimensional array of integers to be freed.
- * @height: The height of grid.
+ * free_grid  - frees up a grid
+ * @grid: grid to check
+ * @height: height of grid
  */
 void free_grid(int **grid, int height)
 {
-	int index;
+	int i;
 
-	for (index = 0; index < height; index++)
+	if (height <= 0)
 	{
-		free(grid[index]);
+		return;
+	}
+	if (grid == NULL)
+	{
+		return;
+	}
+	for (i = 0; i < height; i++)
+	{
+		free(grid[i]);
 	}
 	free(grid);
 }
